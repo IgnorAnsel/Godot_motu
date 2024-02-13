@@ -1,0 +1,199 @@
+[gd_scene load_steps=11 format=3 uid="uid://j8a0ludba6ce"]
+
+[ext_resource type="Script" path="res://texiao/projectiles.gd" id="1_othwj"]
+[ext_resource type="Texture2D" uid="uid://cjce7ljcbl8wn" path="res://texiao/fireball.png" id="1_vph17"]
+[ext_resource type="Script" path="res://Hitbox.gd" id="2_qujiq"]
+[ext_resource type="Script" path="res://Hurtbox.gd" id="3_g22q7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6vomo"]
+size = Vector2(6, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqs1n"]
+size = Vector2(6, 6)
+
+[sub_resource type="Animation" id="Animation_umuvx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("graphics/Projectile:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 144, 48)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("graphics/Projectile:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("graphics/Projectile:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("graphics/Projectile/Hitbox:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_6b2ex"]
+resource_name = "fly"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("graphics/Projectile:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 144, 48)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("graphics/Projectile:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("graphics/Projectile:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_w5k6g"]
+resource_name = "hit"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("graphics/Projectile:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(144, 0, 576, 48)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("graphics/Projectile:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("graphics/Projectile:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("graphics/Projectile/Hitbox:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wwiue"]
+_data = {
+"RESET": SubResource("Animation_umuvx"),
+"fly": SubResource("Animation_6b2ex"),
+"hit": SubResource("Animation_w5k6g")
+}
+
+[node name="Projectiles" type="Node2D"]
+script = ExtResource("1_othwj")
+
+[node name="graphics" type="Node2D" parent="."]
+
+[node name="Projectile" type="Sprite2D" parent="graphics"]
+texture = ExtResource("1_vph17")
+hframes = 3
+region_enabled = true
+region_rect = Rect2(0, 0, 144, 48)
+
+[node name="Hitbox" type="Area2D" parent="graphics/Projectile"]
+collision_layer = 0
+collision_mask = 56
+script = ExtResource("2_qujiq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="graphics/Projectile/Hitbox"]
+shape = SubResource("RectangleShape2D_6vomo")
+
+[node name="Hurtbox" type="Area2D" parent="graphics/Projectile"]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("3_g22q7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="graphics/Projectile/Hurtbox"]
+shape = SubResource("RectangleShape2D_lqs1n")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wwiue")
+}
+
+[connection signal="hit" from="graphics/Projectile/Hitbox" to="." method="_on_hitbox_hit"]
+[connection signal="hurt" from="graphics/Projectile/Hurtbox" to="." method="_on_hurtbox_hurt"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

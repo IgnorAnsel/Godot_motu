@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2i7qtc3i2urx"]
+
+[ext_resource type="Texture2D" uid="uid://dt3buovo47xk5" path="res://UI/DALL·E 2024-02-12 10.01.04 - Create a pixel art image of a mythical land named 'Magic Soil'. The image should feature fantastical landscapes with towering magical trees, sparkling.webp" id="1_nj5s8"]
+[ext_resource type="Texture2D" uid="uid://dhyfxcvagxlmw" path="res://UI/170770350744020.png" id="2_1nvah"]
+[ext_resource type="Script" path="res://duomenu.gd" id="3_rrits"]
+
+[node name="duo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_offset = Vector2(2.685, 2.58)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(468, 147)
+texture = ExtResource("1_nj5s8")
+
+[node name="ui" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.0
+offset_bottom = 3.0
+
+[node name="title" type="TextureRect" parent="ui"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_1nvah")
+
+[node name="duomenu" type="VBoxContainer" parent="ui"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+script = ExtResource("3_rrits")
+
+[node name="Create" type="Button" parent="ui/duomenu"]
+layout_mode = 2
+text = "创建游戏"
+
+[node name="Join" type="Button" parent="ui/duomenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+text = "加入游戏"
+
+[node name="Return" type="Button" parent="ui/duomenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "返回
+"
+
+[connection signal="pressed" from="ui/duomenu/Create" to="ui/duomenu" method="_on_create_pressed"]
+[connection signal="pressed" from="ui/duomenu/Join" to="ui/duomenu" method="_on_join_pressed"]
+[connection signal="pressed" from="ui/duomenu/Return" to="ui/duomenu" method="_on_return_pressed"]

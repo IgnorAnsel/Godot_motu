@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://117miwagahl2"]
+
+[ext_resource type="Script" path="res://float.gd" id="1_xqcmj"]
+[ext_resource type="FontFile" uid="uid://bxww7m05urpnq" path="res://player/douyuFont-2.otf" id="2_ybsf7"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rt1q2"]
+properties/0/path = NodePath("Label:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="float" type="Node2D"]
+script = ExtResource("1_xqcmj")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("2_ybsf7")
+theme_override_font_sizes/font_size = 10
+text = "-1
+"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_rt1q2")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

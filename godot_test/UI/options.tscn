@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpe5yad8wkvo7"]
+
+[ext_resource type="Script" path="res://UI/ScrollContainer.gd" id="1_hpsj5"]
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.5
+offset_right = -0.5
+offset_bottom = 23.0
+grow_horizontal = 2
+scale = Vector2(2.715, 2.715)
+text = "设置"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = 81.0
+offset_right = 2.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hpsj5")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "方框颜色设置
+"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="Panel/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "设置"
